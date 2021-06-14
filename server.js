@@ -42,6 +42,9 @@ Edit
 /*
 Show
 */
+app.get('/pokemon/:id', (req, res) => {
+  res.send(req.params.id)
+})
 
 
 //tell app to listen on port 3000
