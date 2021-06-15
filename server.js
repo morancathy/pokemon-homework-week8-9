@@ -43,7 +43,7 @@ Edit
 Show
 */
 app.get('/pokemon/:id', (req, res) => {
-  res.send(req.params.id)
+  res.send(`<p>${req.params.id}</p>`)
 })
 
 

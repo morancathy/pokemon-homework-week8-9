@@ -5,6 +5,9 @@ color: '#ffffff',
 backgroundColor: '#FF69B4',
 };
 
+const liStyle = {
+  paddingBottom: '5px'
+};
 
 class Index extends React.Component {
   render(){
@@ -15,8 +18,8 @@ class Index extends React.Component {
         <ul>
           {pokemon.map((charactor, i) =>{
               return(
-                <li>
-                  Hi, I am {(pokemon[i].name.charAt(0).toUpperCase() + pokemon[i].name.slice(1))}!
+                <li style={liStyle}>
+                  Hi, I am <a href={`/pokemon/${i}`}>{(pokemon[i].name.charAt(0).toUpperCase() + pokemon[i].name.slice(1))}!</a>
                 </li>
               )
             })
