@@ -1,19 +1,23 @@
 const React = require('react');
 
-const myStyle = {
+//CSS Styling#######################
+const divStyle = {
 color: '#ffffff',
 backgroundColor: '#FF69B4',
 };
 
 const liStyle = {
-  paddingBottom: '5px'
+  fontSize: '18px',
+  color: 'black',
+  paddingBottom: '25px'
 };
+//###############################
 
 class Index extends React.Component {
   render(){
     const pokemon = this.props.pokemon;
     return (
-      <div style={myStyle}>
+      <div style={divStyle}>
         <h1>See All The Pokemon!</h1>
         <ul>
           {pokemon.map((charactor, i) =>{

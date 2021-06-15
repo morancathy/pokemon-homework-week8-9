@@ -5,7 +5,7 @@ const PORT = 3000;
 const pokemon = require('./models/pokemon')
 
 // Configure the app (app.set)
-app.set('view engine', 'jsx');                          //MUST be above the Routes
+app.set('view engine', 'jsx');                        
 app.engine('jsx', require('express-react-views').createEngine())
 
 // Mount middleware (app.use)
@@ -43,7 +43,9 @@ Edit
 Show
 */
 app.get('/pokemon/:id', (req, res) => {
-  res.send(`<p>${req.params.id}</p>`)
+  res.render('Show', {
+    pokemon: pokemon[req.params.id]
+  })
 })
 
 
