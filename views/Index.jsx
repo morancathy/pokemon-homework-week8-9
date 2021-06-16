@@ -19,6 +19,9 @@ class Index extends React.Component {
     return (
       <div style={divStyle}>
         <h1>See All The Pokemon!</h1>
+        <nav>
+          <a href="/pokemon/new">Create a New Pokemon</a>
+        </nav>
         <ul>
           {pokemon.map((charactor, i) =>{
               return(
