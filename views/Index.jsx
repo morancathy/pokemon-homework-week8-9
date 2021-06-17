@@ -15,7 +15,7 @@ const liStyle = {
 
 class Index extends React.Component {
   render(){
-    const pokemon = this.props.pokemon;
+    const pokemons = this.props.pokemon;   //this is where the plural is in fruits
     return (
       <div style={divStyle}>
         <h1>See All The Pokemon!</h1>
@@ -23,10 +23,10 @@ class Index extends React.Component {
           <a href="/pokemon/new">Create a New Pokemon</a>
         </nav>
         <ul>
-          {pokemon.map((charactor, i) =>{
+          {pokemons.map((pokemon) =>{
               return(
-                <li style={liStyle}>
-                  Hi, I am <a href={`/pokemon/${i}`}>{(pokemon[i].name.charAt(0).toUpperCase() + pokemon[i].name.slice(1))}!</a>
+                <li style={liStyle} key={pokemon._id}>
+                  Hi, I am <a href={`/pokemon/${pokemon._id}`}>{(pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1))}!</a>
                 </li>
               )
             })
