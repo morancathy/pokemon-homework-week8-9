@@ -15,7 +15,7 @@ const liStyle = {
 
 class Index extends React.Component {
   render(){
-    const pokemons = this.props.pokemon;   //this is where the plural is in fruits
+    const pokemons = this.props.pokemon;   
     return (
       <div style={divStyle}>
         <h1>See All The Pokemon!</h1>

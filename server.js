@@ -81,7 +81,7 @@ Update
 /*
 Create
 */
-app.post('/pokemon/', (req, res) =>{
+app.post('/pokemon', (req, res) =>{
   Pokemon.create(req.body, (err, createdPokemon) => {
     if(err){
       res.status(404).send({
