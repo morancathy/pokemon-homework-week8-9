@@ -4,11 +4,9 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const Pokemon = require('./models/pokemon.js'); //pokemon.js?
+const Pokemon = require('./models/pokemon.js');
 
-/****************************************
- Database set up
-****************************************/
+// Database set up
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -18,31 +16,18 @@ mongoose.connect(process.env.MONGO_URI, {
   useFindAndModify: false
 });
 
-mongoose.connection.once('open', () => {    //will eventualy delete
-  console.log('connected to mongo');
-});
-
 // Configure the app (app.set)
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 // Mount middleware (app.use)
 app.use((req, res, next) => {                                    //do i need this
-  console.log('***********Middleware checking in***********')
-  console.log('I run before all routes')
-  next()
-})
+  console.log('***********Middleware checking in***********');
+  console.log('I run before all routes');
+  next();
+});
 
-app.use(express.urlencoded({ extended: true }));  //body parser?
-
-// Dummy Code For now...
-app.post('/products/', (req, res) => {
-  console.log('req.body is', req.body)
-  // res.send('This route works')
-  res.send(res.body)
-})
-//END DUMMY CODE
-
+app.use(express.urlencoded({ extended: true }));
 
 // Seed Route
 app.get('/pokemon/seed', (req, res) =>{
@@ -56,7 +41,7 @@ app.get('/pokemon/seed', (req, res) =>{
     {name: "wartortle", img: "http://img.pokemondb.net/artwork/wartortle"}
   ], (err, data) =>{
       res.redirect('/pokemon');
-  })
+  });
 });
 
 /*****************
@@ -66,7 +51,7 @@ Mount INDUCES Routes
 Index
 */
 app.get('/', (req, res) => {
-  res.send('<h1>Welcome to the Pokemon App!(Index Page)</h1>');
+  res.send('<h1>Welcome to the Pokemon App!</h1><a href="/pokemon/">See All The Pokemon</a>');
 });
 
 app.get('/pokemon', (req, res) => {
@@ -77,8 +62,8 @@ app.get('/pokemon', (req, res) => {
       })
     } else {
       res.render('Index', {pokemon: allPokemon});
-    }
-  })
+    };
+  });
 });
 
 /*
@@ -86,7 +71,7 @@ New
 */
 app.get('/pokemon/new', (req, res) => {
   res.render('New');
-})
+});
 /*
 Delete
 */
@@ -96,10 +81,6 @@ Update
 /*
 Create
 */
-// app.post('/pokemon/', (req, res) =>{
-//         Pokemon.push(req.body);
-//         res.redirect('/pokemon');
-//   })
 app.post('/pokemon/', (req, res) =>{
   Pokemon.create(req.body, (err, createdPokemon) => {
     if(err){
@@ -108,10 +89,9 @@ app.post('/pokemon/', (req, res) =>{
       })
     } else {
       console.log(createdPokemon);
-      // res.send(createdPokemon);
-      res.redirect('/pokemon')
-    }
-  })
+      res.redirect('/pokemon');
+    };
+  });
 });
 /*
 Edit
@@ -129,10 +109,9 @@ app.get('/pokemon/:id', (req, res) => {
       res.render('Show', {pokemon: foundPokemon});
     };
   });
-  // res.render('Show', {pokemon: pokemon[req.params.id]})
 });
 
 //tell app to listen on port 3000
 app.listen(PORT, () => {
   console.log(`Listening in on ${PORT}`);
-})
+});
